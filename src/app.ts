@@ -1,22 +1,33 @@
 import express, { Request, Response } from "express"
 import bodyParser from 'body-parser';
-import { ProductsRoutes } from "./modules/student/Routes/ECommerce.route";
-import { OrderRoutes } from "./modules/student/Routes/Order.route";
+import { routes } from "./route/routes";
+import globalErrorHandler from "./middleWare/globalErrorHandler";
+import cors from 'cors'
 
+// const app: Application = express()
 const app = express()
 
+//....... middleware
+// app.use(cors({ origin: ['http://localhost:5173'] }))
 app.use(bodyParser.json());
 app.use(express.json());
-// app.use(cors())
-app.use('/api/products', ProductsRoutes)
-app.use('/api/orders', OrderRoutes)
+app.use(cors());
+
+
+//...... application routes
+app.use('/api', routes)
 
 app.get("/", (req: Request, res: Response) => {
-  res.send("Hello world");
+  res.send("Welcome to FitZone Server");
 })
 
-// app.use((req, res) => {
-//   res.status(404).json({ success: false, message: 'Route not found' });
+// customize error
+app.use(globalErrorHandler)
+
+// app.use((req: Request, res: Response, next: NextFunction) => {
+//   res.status(404).json({ success: false, message: 'Route not found',error: '' });
 // });
 
+
 export default app
+
