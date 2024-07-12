@@ -8,6 +8,10 @@ const moduleRoutes = [
     path: '/products',
     route: ProductRoutes,
   },
+  {
+    path: '/orders',
+    route: ProductRoutes,
+  },
 ]
 
 moduleRoutes.forEach(route => {
