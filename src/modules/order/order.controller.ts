@@ -20,8 +20,7 @@ const createOrder = catchAsync(async (req, res) => {
 
   const getAllOrders = catchAsync(async (req, res) => {
     try{
-      const query = req.query
-      const result = await OrderService.getOrdersFromDB(query)
+      const result = await OrderService.getOrdersFromDB()
       res.json({
         success: true,
         message: "Orders fetched successfully!",
