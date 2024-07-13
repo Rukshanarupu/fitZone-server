@@ -35,5 +35,5 @@ const OrderSchema = new mongoose_1.Schema({
     },
     cartItems: [product_model_1.productSchema],
 });
-const Order = mongoose_1.default.model('Order', OrderSchema);
-exports.default = Order;
+const OrderModel = mongoose_1.default.model('Orders', OrderSchema);
+exports.default = OrderModel;

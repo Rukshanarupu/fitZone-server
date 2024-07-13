@@ -23,7 +23,7 @@ const createOrder = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, vo
         (0, sendResponse_1.default)(res, {
             statusCode: 200,
             success: true,
-            message: 'Product created successfully',
+            message: 'Order created successfully',
             data: result,
         });
     }
@@ -31,4 +31,17 @@ const createOrder = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, vo
         console.log(error);
     }
 }));
-exports.ProductController = { createOrder };
+const getAllOrders = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const result = yield order_service_1.OrderService.getOrdersFromDB();
+        res.json({
+            success: true,
+            message: "Orders fetched successfully!",
+            data: result,
+        });
+    }
+    catch (error) {
+        console.log(error);
+    }
+}));
+exports.ProductController = { createOrder, getAllOrders };
