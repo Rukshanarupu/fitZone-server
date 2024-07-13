@@ -9,7 +9,7 @@ const createOrder = catchAsync(async (req, res) => {
       sendResponse(res, {
         statusCode: 200,
         success: true,
-        message: 'Product created successfully',
+        message: 'Order created successfully',
         data: result,
       })
     }catch (error) {
@@ -17,4 +17,19 @@ const createOrder = catchAsync(async (req, res) => {
     }
   })
 
-export const ProductController = { createOrder}
+
+  const getAllOrders = catchAsync(async (req, res) => {
+    try{
+      const query = req.query
+      const result = await OrderService.getOrdersFromDB(query)
+      res.json({
+        success: true,
+        message: "Orders fetched successfully!",
+        data: result,
+      })
+    }catch (error) {
+      console.log(error)
+    }
+  })
+
+export const ProductController = { createOrder, getAllOrders}

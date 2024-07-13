@@ -1,9 +1,9 @@
 import productModel from '../product/product.model'
 import { TOrder } from './order.interface'
-import Order from './order.model'
+import OrderModel from './order.model'
 
 const createOrderIntoDB = async (order: TOrder) => {
-  const result = await Order.create(order)
+  const result = await OrderModel.create(order)
   for (const cartItem of result.cartItems) {
     await productModel.findByIdAndUpdate(cartItem._id, {
       stock: cartItem.stock - cartItem.quantity!,
@@ -12,4 +12,9 @@ const createOrderIntoDB = async (order: TOrder) => {
   return result
 }
 
-export const OrderService = { createOrderIntoDB }
+const getOrdersFromDB= async ()=>{
+  const result=await OrderModel.find()
+  return result
+}
+
+export const OrderService = { createOrderIntoDB, getOrdersFromDB }

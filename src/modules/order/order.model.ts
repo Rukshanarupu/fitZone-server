@@ -13,6 +13,6 @@ const OrderSchema = new Schema<TOrder>({
   cartItems: [productSchema],
 })
 
-const Order = mongoose.model<TOrder>('Order', OrderSchema)
+const OrderModel = mongoose.model<TOrder>('Orders', OrderSchema)
 
-export default Order
+export default OrderModel
